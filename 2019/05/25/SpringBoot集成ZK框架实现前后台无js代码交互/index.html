@@ -5,23 +5,23 @@
   
 
   
-  <title>zst技术栈</title>
+  <title>SpringBoot集成ZK框架实现前后台无js代码交互 | zst技术栈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: SpringBoot集成ZK框架实现前后台无js代码交互  Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT">
+  <meta name="description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        htt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zst技术栈">
+<meta property="og:title" content="SpringBoot集成ZK框架实现前后台无js代码交互">
 <meta property="og:url" content="https://blog.csdn.net/u010671741?t=1/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/index.html">
 <meta property="og:site_name" content="zst技术栈">
-<meta property="og:description" content="title: SpringBoot集成ZK框架实现前后台无js代码交互  Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT">
+<meta property="og:description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        htt">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190331194611101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190331205426422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190331205510642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-05-25T15:42:14.009Z">
+<meta property="og:updated_time" content="2019-05-25T15:52:28.874Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zst技术栈">
-<meta name="twitter:description" content="title: SpringBoot集成ZK框架实现前后台无js代码交互  Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT">
+<meta name="twitter:title" content="SpringBoot集成ZK框架实现前后台无js代码交互">
+<meta name="twitter:description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        htt">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="zst技术栈" type="application/atom+xml">
@@ -83,10 +83,19 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot集成ZK框架实现前后台无js代码交互
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title: SpringBoot集成ZK框架实现前后台无js代码交互</p>
-<ol>
+        <ol>
 <li>Spring Initializr 一个springboot项目<br><img src="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">2. 配置pom.xml引入Springboot和ZK的依赖。</li>
 </ol>
 <p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"><br>        <modelversion>4.0.0</modelversion><br>        <groupid>spring.zk</groupid><br>        <artifactid>zkspringboot-demo-test</artifactid><br>        <packaging>jar</packaging><br>        <version>0.0.1-SNAPSHOT</version><br>        <name>zkspringboot-demo-test</name><br>        <url><a href="http://www.zkoss.org" target="_blank" rel="noopener">http://www.zkoss.org</a></url></project></p>
@@ -232,7 +241,7 @@ public Date getCurrentTime() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/" data-id="cjw3oqbqr0002bosu8sk3fd4w" class="article-share-link">Share</a>
+      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/" data-id="cjw3p1gyu0001lssugxxqcze5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -244,7 +253,7 @@ public Date getCurrentTime() {
   
     <a href="/2019/05/25/新装服务器、终端配置局域网/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">新装服务器、终端配置局域网</div>
     </a>
   
 </nav>
@@ -281,23 +290,23 @@ public Date getCurrentTime() {
       <ul>
         
           <li>
-            <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/">(no title)</a>
+            <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/">SpringBoot集成ZK框架实现前后台无js代码交互</a>
           </li>
         
           <li>
-            <a href="/2019/05/25/新装服务器、终端配置局域网/">(no title)</a>
+            <a href="/2019/05/25/新装服务器、终端配置局域网/">新装服务器、终端配置局域网</a>
           </li>
         
           <li>
-            <a href="/2019/05/25/vmware'如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用'解决办法/">(no title)</a>
+            <a href="/2019/05/25/vmware'如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用'解决办法/">vmware&#39;如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用&#39;解决办法</a>
           </li>
         
           <li>
-            <a href="/2019/05/25/Spring Boot 项目配置/">(no title)</a>
+            <a href="/2019/05/25/Spring Boot 项目配置/">Spring Boot 项目配置</a>
           </li>
         
           <li>
-            <a href="/2019/05/25/运行你的第一个Docker镜像/">(no title)</a>
+            <a href="/2019/05/25/运行你的第一个Docker镜像/">运行你的第一个Docker镜像</a>
           </li>
         
       </ul>

@@ -5,14 +5,14 @@
   
 
   
-  <title>zst技术栈</title>
+  <title>运行你的第一个Docker镜像 | zst技术栈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: 运行你的第一个Docker镜像  首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT">
+  <meta name="description" content="首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT.jar在同一个目录 名字必须叫Dockerf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zst技术栈">
+<meta property="og:title" content="运行你的第一个Docker镜像">
 <meta property="og:url" content="https://blog.csdn.net/u010671741?t=1/2019/05/25/运行你的第一个Docker镜像/index.html">
 <meta property="og:site_name" content="zst技术栈">
-<meta property="og:description" content="title: 运行你的第一个Docker镜像  首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT">
+<meta property="og:description" content="首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT.jar在同一个目录 名字必须叫Dockerf">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519175458721.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519175631355.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
@@ -27,10 +27,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519182501764.">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519182733396.">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519182818216.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-05-25T15:43:49.233Z">
+<meta property="og:updated_time" content="2019-05-25T15:53:11.632Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zst技术栈">
-<meta name="twitter:description" content="title: 运行你的第一个Docker镜像  首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT">
+<meta name="twitter:title" content="运行你的第一个Docker镜像">
+<meta name="twitter:description" content="首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT.jar在同一个目录 名字必须叫Dockerf">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190519175458721.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="zst技术栈" type="application/atom+xml">
@@ -92,10 +92,19 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      运行你的第一个Docker镜像
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title: 运行你的第一个Docker镜像</p>
-<ol>
+        <ol>
 <li>首先我们先编写一个简单的java spring boot 程序，并打成jar包<br> <img src="https://img-blog.csdnimg.cn/20190519175458721.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">2.  把这个jar包copy到装有docker 环境的虚拟机里<br><img src="https://img-blog.csdnimg.cn/20190519175631355.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 <li><p>docker查找jre基础镜像<br><img src="https://img-blog.csdnimg.cn/20190519180004551.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 </li>
@@ -122,7 +131,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/运行你的第一个Docker镜像/" data-id="cjw3oqbrb0004bosulhq7cw2f" class="article-share-link">Share</a>
+      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/运行你的第一个Docker镜像/" data-id="cjw3p1gz90007lssu4ked13rs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -135,7 +144,7 @@
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          (no title)
+          Spring Boot 项目配置
         
       </div>
     </a>
@@ -180,23 +189,23 @@
       <ul>
         
           <li>
-            <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/">(no title)</a>
+            <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/">SpringBoot集成ZK框架实现前后台无js代码交互</a>
           </li>
         
           <li>
-            <a href="/2019/05/25/新装服务器、终端配置局域网/">(no title)</a>
+            <a href="/2019/05/25/新装服务器、终端配置局域网/">新装服务器、终端配置局域网</a>
           </li>
         
           <li>
-            <a href="/2019/05/25/vmware'如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用'解决办法/">(no title)</a>
+            <a href="/2019/05/25/vmware'如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用'解决办法/">vmware&#39;如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用&#39;解决办法</a>
           </li>
         
           <li>
-            <a href="/2019/05/25/Spring Boot 项目配置/">(no title)</a>
+            <a href="/2019/05/25/Spring Boot 项目配置/">Spring Boot 项目配置</a>
           </li>
         
           <li>
-            <a href="/2019/05/25/运行你的第一个Docker镜像/">(no title)</a>
+            <a href="/2019/05/25/运行你的第一个Docker镜像/">运行你的第一个Docker镜像</a>
           </li>
         
       </ul>
