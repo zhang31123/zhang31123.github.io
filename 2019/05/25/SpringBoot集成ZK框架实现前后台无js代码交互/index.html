@@ -7,21 +7,21 @@
   
   <title>SpringBoot集成ZK框架实现前后台无js代码交互 | zst技术栈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        htt">
+  <meta name="description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        ht">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot集成ZK框架实现前后台无js代码交互">
 <meta property="og:url" content="https://blog.csdn.net/u010671741?t=1/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/index.html">
 <meta property="og:site_name" content="zst技术栈">
-<meta property="og:description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        htt">
+<meta property="og:description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        ht">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190331194611101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190331205426422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190331205510642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-05-25T15:52:28.874Z">
+<meta property="og:updated_time" content="2019-05-25T15:59:45.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot集成ZK框架实现前后台无js代码交互">
-<meta name="twitter:description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        htt">
+<meta name="twitter:description" content="Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT        zkspringboot-demo-test        ht">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="zst技术栈" type="application/atom+xml">
@@ -95,7 +95,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
+        <p><meta name="referrer" content="no-referrer"></p>
+<ol>
 <li>Spring Initializr 一个springboot项目<br><img src="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">2. 配置pom.xml引入Springboot和ZK的依赖。</li>
 </ol>
 <p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"><br>        <modelversion>4.0.0</modelversion><br>        <groupid>spring.zk</groupid><br>        <artifactid>zkspringboot-demo-test</artifactid><br>        <packaging>jar</packaging><br>        <version>0.0.1-SNAPSHOT</version><br>        <name>zkspringboot-demo-test</name><br>        <url><a href="http://www.zkoss.org" target="_blank" rel="noopener">http://www.zkoss.org</a></url></project></p>
@@ -241,7 +242,7 @@ public Date getCurrentTime() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/" data-id="cjw3p1gyu0001lssugxxqcze5" class="article-share-link">Share</a>
+      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/" data-id="cjw3pclvc0002i8sujdrju7ch" class="article-share-link">Share</a>
       
       
     </footer>

@@ -7,22 +7,22 @@
   
   <title>Docker 批量操作 | zst技术栈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留t">
+  <meta name="description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 批量操作">
 <meta property="og:url" content="https://blog.csdn.net/u010671741?t=1/2019/05/25/Docker 批量操作/index.html">
 <meta property="og:site_name" content="zst技术栈">
-<meta property="og:description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留t">
+<meta property="og:description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519200756364.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519200939899.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519203022797.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519211709893.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190519212438402.">
-<meta property="og:updated_time" content="2019-05-25T15:52:02.966Z">
+<meta property="og:updated_time" content="2019-05-25T15:59:28.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 批量操作">
-<meta name="twitter:description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留t">
+<meta name="twitter:description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190519200756364.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="zst技术栈" type="application/atom+xml">
@@ -96,7 +96,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
+        <p><meta name="referrer" content="no-referrer"></p>
+<ol>
 <li>docker 查看所有容器<br>docker ps -a<br> <img src="https://img-blog.csdnimg.cn/20190519200756364.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 <li><p>docker 批量删除容器<br>docker rm -f $(docker ps -a -q)<br><img src="https://img-blog.csdnimg.cn/20190519200939899.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 </li>
@@ -113,7 +114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/Docker 批量操作/" data-id="cjw3p1gyj0000lssuyr0wiycf" class="article-share-link">Share</a>
+      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/Docker 批量操作/" data-id="cjw3pclux0000i8suag38sbkl" class="article-share-link">Share</a>
       
       
     </footer>
