@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Docker 批量操作 | zst技术栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 批量操作">
+<meta property="og:url" content="https://blog.csdn.net/u010671741?t=1/2019/05/25/Docker 批量操作/index.html">
+<meta property="og:site_name" content="zst技术栈">
+<meta property="og:description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留t">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519200756364.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519200939899.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519203022797.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519211709893.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519212438402.">
+<meta property="og:updated_time" content="2019-05-25T15:40:16.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 批量操作">
+<meta name="twitter:description" content="docker 查看所有容器docker ps -a  docker 批量删除容器docker rm -f $(docker ps -a -q)  在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本   先创建几个版本的镜像方便演示 假设只有版本0.0.0.1 能用， 我们要保留t">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190519200756364.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="zst技术栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zst技术栈</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">技术相关</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.csdn.net/u010671741?t=1"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Docker 批量操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/25/Docker 批量操作/" class="article-date">
+  <time datetime="2019-05-25T15:37:17.943Z" itemprop="datePublished">2019-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker 批量操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>docker 查看所有容器<br>docker ps -a<br> <img src="https://img-blog.csdnimg.cn/20190519200756364.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li><p>docker 批量删除容器<br>docker rm -f $(docker ps -a -q)<br><img src="https://img-blog.csdnimg.cn/20190519200939899.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>在日常操作中，我们通常是版本迭代的去打镜像，知道镜像能用为止， 这样，本地就会有多个版本的镜像，docker rmi命令可以批量删除无用的镜像，只保留本地有用的一个版本</p>
+</li>
+</ol>
+<p>先创建几个版本的镜像方便演示<br><img src="https://img-blog.csdnimg.cn/20190519203022797.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>假设只有版本0.0.0.1 能用， 我们要保留testdemo:0.0.0.1，删除其他版本的镜像</p>
+<p> <img src="https://img-blog.csdnimg.cn/20190519211709893.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ol start="4">
+<li>假设我们有一个主控节点服务器master1, 有15个 计算节点服务器，我们可以在主控节点用以下命令往各个节点拉镜像，这样启动部署容器的时候不管它跳到哪个节点运行，都省掉了pull的时间，以免造成超时。<br><img src="https://img-blog.csdnimg.cn/20190519212438402." alt="在这里插入图片描述"></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/Docker 批量操作/" data-id="cjw3oqbpy0001bosudd846e0c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/25/运行你的第一个Docker镜像/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/25/myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/新装服务器、终端配置局域网/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/vmware'如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用'解决办法/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/Spring Boot 项目配置/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/运行你的第一个Docker镜像/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zst<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

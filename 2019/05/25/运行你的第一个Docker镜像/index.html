@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>zst技术栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: 运行你的第一个Docker镜像  首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zst技术栈">
+<meta property="og:url" content="https://blog.csdn.net/u010671741?t=1/2019/05/25/运行你的第一个Docker镜像/index.html">
+<meta property="og:site_name" content="zst技术栈">
+<meta property="og:description" content="title: 运行你的第一个Docker镜像  首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519175458721.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519175631355.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519180004551.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519180136471.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519180254932.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519180512826.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519180904928.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519181721402.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519181859765.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019051918213674.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519182501764.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519182733396.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190519182818216.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-05-25T15:43:49.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zst技术栈">
+<meta name="twitter:description" content="title: 运行你的第一个Docker镜像  首先我们先编写一个简单的java spring boot 程序，并打成jar包 2.  把这个jar包copy到装有docker 环境的虚拟机里 docker查找jre基础镜像  下载该镜像到本地镜像仓库   查看下载下来的基础jre镜像   编写 Dockerfile文件 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190519175458721.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="zst技术栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zst技术栈</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">技术相关</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.csdn.net/u010671741?t=1"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-运行你的第一个Docker镜像" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/25/运行你的第一个Docker镜像/" class="article-date">
+  <time datetime="2019-05-25T15:37:29.743Z" itemprop="datePublished">2019-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: 运行你的第一个Docker镜像</p>
+<ol>
+<li>首先我们先编写一个简单的java spring boot 程序，并打成jar包<br> <img src="https://img-blog.csdnimg.cn/20190519175458721.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">2.  把这个jar包copy到装有docker 环境的虚拟机里<br><img src="https://img-blog.csdnimg.cn/20190519175631355.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li><p>docker查找jre基础镜像<br><img src="https://img-blog.csdnimg.cn/20190519180004551.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>下载该镜像到本地镜像仓库<br> <img src="https://img-blog.csdnimg.cn/20190519180136471." alt="在这里插入图片描述"></p>
+</li>
+<li><p>查看下载下来的基础jre镜像<br> <img src="https://img-blog.csdnimg.cn/20190519180254932." alt="在这里插入图片描述"></p>
+</li>
+<li><p>编写 Dockerfile文件<br> 注意: Dockerfile 必须要跟test-0.0.1-SNAPSHOT.jar在同一个目录<br> 名字必须叫Dockerfile<br> <img src="https://img-blog.csdnimg.cn/20190519180512826." alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190519180904928.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>FROM：刚下载下来的jre基础镜像<br>MAINTAINER：维护者信息<br>ADD:  把本地文件添加到容器内的哪个位置<br>ENV 设置环境变量<br>workdir 工作空间<br>EXPOSE 运行容器的端口<br>CMD 启动指令<br>编写完Dockerfile保存退出</p>
+</li>
+<li><p>创建镜像 docker build -t test:0.0.0.1 .<br>注意：不要忘记了后边的 .<br> <img src="https://img-blog.csdnimg.cn/20190519181721402." alt="在这里插入图片描述"></p>
+</li>
+<li><p>docker images 查看刚创建的镜像<br><img src="https://img-blog.csdnimg.cn/20190519181859765." alt="在这里插入图片描述"></p>
+</li>
+<li><p>运行该镜像， 因为我在程序的里指定了端口 server.port=8082，<br>所以容器内的端口是8082， 我们把它映射到外边的12888端口<br><img src="https://img-blog.csdnimg.cn/2019051918213674.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<p>执行docker run -d -p 12888:8082 test:0.0.0.1 运行该镜像<br><img src="https://img-blog.csdnimg.cn/20190519182501764." alt="在这里插入图片描述"></p>
+<ol start="11">
+<li>docker ps 查看正在运行的镜像<br> <img src="https://img-blog.csdnimg.cn/20190519182733396." alt="在这里插入图片描述"></li>
+<li>浏览器访问该程序</li>
+<li><img src="https://img-blog.csdnimg.cn/20190519182818216.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/运行你的第一个Docker镜像/" data-id="cjw3oqbrb0004bosulhq7cw2f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/25/Spring Boot 项目配置/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/25/Docker 批量操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker 批量操作</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/新装服务器、终端配置局域网/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/vmware'如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用'解决办法/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/Spring Boot 项目配置/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/运行你的第一个Docker镜像/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zst<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

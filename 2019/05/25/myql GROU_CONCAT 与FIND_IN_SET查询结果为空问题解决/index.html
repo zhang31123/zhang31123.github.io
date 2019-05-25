@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>zst技术栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决  有两张表，表结构如下,右边是hot_incident数据  hot_event_person_ids以字符串的形式存多个hot_person表里的id  hot_person数据如下    需求： 根据hot_person表里id为2的用户与hot_incident.hot_event_person_i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zst技术栈">
+<meta property="og:url" content="https://blog.csdn.net/u010671741?t=1/2019/05/25/myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决/index.html">
+<meta property="og:site_name" content="zst技术栈">
+<meta property="og:description" content="title: myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决  有两张表，表结构如下,右边是hot_incident数据  hot_event_person_ids以字符串的形式存多个hot_person表里的id  hot_person数据如下    需求： 根据hot_person表里id为2的用户与hot_incident.hot_event_person_i">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190521224833325.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190521225036472.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190521225829398.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190521230325721.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190521230530681.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190521230755718.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-05-25T15:41:27.092Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zst技术栈">
+<meta name="twitter:description" content="title: myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决  有两张表，表结构如下,右边是hot_incident数据  hot_event_person_ids以字符串的形式存多个hot_person表里的id  hot_person数据如下    需求： 根据hot_person表里id为2的用户与hot_incident.hot_event_person_i">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190521224833325.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="zst技术栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zst技术栈</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">技术相关</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.csdn.net/u010671741?t=1"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/25/myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决/" class="article-date">
+  <time datetime="2019-05-25T15:36:59.996Z" itemprop="datePublished">2019-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决</p>
+<ol>
+<li>有两张表，表结构如下,右边是hot_incident数据</li>
+<li><img src="https://img-blog.csdnimg.cn/20190521224833325.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li><p>hot_event_person_ids以字符串的形式存多个hot_person表里的id</p>
+</li>
+<li><p>hot_person数据如下</p>
+</li>
+<li><img src="https://img-blog.csdnimg.cn/20190521225036472." alt="在这里插入图片描述"></li>
+</ol>
+<p>需求： 根据hot_person表里id为2的用户与hot_incident.hot_event_person_ids对应的所有的incident_title的拼接，中间用逗号隔开</p>
+<p>实现：<br>SELECT<br>  hp.id id,<br>  hp.NAME NAME,<br>  ‘事件人物’ AS labelName,<br>  hp.keyword AS keyword,<br> GROUP_CONCAT(hi.incident_title)<br>FROM<br>  hot_person hp,<br>  <code>hot_incident</code> hi<br>WHERE<br> hp.STATUS = 1<br>  AND hp.id = 2<br>  AND FIND_IN_SET(hp.id, hi.hot_event_person_ids)；</p>
+<p>发现查出的是null<br><img src="https://img-blog.csdnimg.cn/20190521225829398.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>排查原因，发现是hot_person表的id创建的时候设置了fillzero属性，<br>解决方案：1. 去掉hot_person表id 的fillzero属性<br><img src="https://img-blog.csdnimg.cn/20190521230325721.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解决方案： 2. hot_incident.hot_event_person_ids存id的时候补零。<br><img src="https://img-blog.csdnimg.cn/20190521230530681." alt="在这里插入图片描述"></p>
+<p>解决后效果：<br><img src="https://img-blog.csdnimg.cn/20190521230755718.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/myql GROU_CONCAT 与FIND_IN_SET查询结果为空问题解决/" data-id="cjw3oqbrk0006bosu7x8juz1a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/25/Docker 批量操作/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Docker 批量操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/25/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/新装服务器、终端配置局域网/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/vmware'如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用'解决办法/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/Spring Boot 项目配置/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/运行你的第一个Docker镜像/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zst<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

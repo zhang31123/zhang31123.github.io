@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>zst技术栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: SpringBoot集成ZK框架实现前后台无js代码交互  Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zst技术栈">
+<meta property="og:url" content="https://blog.csdn.net/u010671741?t=1/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/index.html">
+<meta property="og:site_name" content="zst技术栈">
+<meta property="og:description" content="title: SpringBoot集成ZK框架实现前后台无js代码交互  Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190331194611101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190331205426422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190331205510642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-05-25T15:42:14.009Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zst技术栈">
+<meta name="twitter:description" content="title: SpringBoot集成ZK框架实现前后台无js代码交互  Spring Initializr 一个springboot项目2. 配置pom.xml引入Springboot和ZK的依赖。          4.0.0        spring.zk        zkspringboot-demo-test        jar        0.0.1-SNAPSHOT">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="zst技术栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zst技术栈</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">技术相关</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.csdn.net/u010671741?t=1"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SpringBoot集成ZK框架实现前后台无js代码交互" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/" class="article-date">
+  <time datetime="2019-05-25T15:38:19.921Z" itemprop="datePublished">2019-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: SpringBoot集成ZK框架实现前后台无js代码交互</p>
+<ol>
+<li>Spring Initializr 一个springboot项目<br><img src="https://img-blog.csdnimg.cn/20190331190455357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">2. 配置pom.xml引入Springboot和ZK的依赖。</li>
+</ol>
+<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"><br>        <modelversion>4.0.0</modelversion><br>        <groupid>spring.zk</groupid><br>        <artifactid>zkspringboot-demo-test</artifactid><br>        <packaging>jar</packaging><br>        <version>0.0.1-SNAPSHOT</version><br>        <name>zkspringboot-demo-test</name><br>        <url><a href="http://www.zkoss.org" target="_blank" rel="noopener">http://www.zkoss.org</a></url></project></p>
+<pre><code>    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;ZK CE&lt;/id&gt;
+            &lt;name&gt;ZK CE Repository&lt;/name&gt;
+            &lt;url&gt;https://mavensync.zkoss.org/maven2&lt;/url&gt;
+        &lt;/repository&gt;
+        &lt;repository&gt;
+            &lt;id&gt;ZK EVAL&lt;/id&gt;
+            &lt;name&gt;ZK Evaluation Repository&lt;/name&gt;
+            &lt;url&gt;https://mavensync.zkoss.org/eval&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+
+    &lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+        &lt;zkspringboot.version&gt;1.0.4&lt;/zkspringboot.version&gt;
+        &lt;springboot.version&gt;2.1.0.RELEASE&lt;/springboot.version&gt;
+        &lt;zk.version&gt;8.6.0.1-Eval&lt;/zk.version&gt;
+        &lt;zats.version&gt;2.0.0&lt;/zats.version&gt;
+        &lt;junit.version&gt;4.12&lt;/junit.version&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.zkoss.zkspringboot&lt;/groupId&gt;
+            &lt;artifactId&gt;zkspringboot-starter&lt;/artifactId&gt;
+            &lt;version&gt;${zkspringboot.version}&lt;/version&gt;
+            &lt;type&gt;pom&lt;/type&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.zkoss.zk&lt;/groupId&gt;
+            &lt;artifactId&gt;zkmax&lt;/artifactId&gt;
+            &lt;version&gt;${zk.version}&lt;/version&gt;
+            &lt;exclusions&gt;
+                &lt;exclusion&gt;
+                    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+                    &lt;artifactId&gt;slf4j-jdk14&lt;/artifactId&gt;
+                &lt;/exclusion&gt;
+            &lt;/exclusions&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.zkoss.zk&lt;/groupId&gt;
+            &lt;artifactId&gt;zkbind&lt;/artifactId&gt;
+            &lt;version&gt;${zk.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.zkoss.zk&lt;/groupId&gt;
+            &lt;artifactId&gt;zuti&lt;/artifactId&gt;
+            &lt;version&gt;${zk.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.zkoss.zk&lt;/groupId&gt;
+            &lt;artifactId&gt;zkplus&lt;/artifactId&gt;
+            &lt;version&gt;${zk.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+    &lt;/dependencies&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;${springboot.version}&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;repackage&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+</code></pre><ol start="3">
+<li>编写springboot入口类:</li>
+</ol>
+<p>package spring.zk.test;</p>
+<p>import org.springframework.boot.SpringApplication;<br>import org.springframework.boot.autoconfigure.SpringBootApplication;<br>import org.springframework.stereotype.Controller;<br>import org.springframework.web.bind.annotation.GetMapping;</p>
+<p>@SpringBootApplication<br>@Controller<br>public class TestApplication {</p>
+<pre><code>public static void main(String[] args) {
+    SpringApplication.run(TestApplication.class);
+}
+
+@GetMapping(&quot;/mvvm&quot;)
+public String mvvmExample() {
+    return &quot;mvvm&quot;;
+}
+</code></pre><p>}</p>
+<ol start="4">
+<li>编写 TestService 类 获取当前时间:</li>
+</ol>
+<p>package spring.zk.test.service;</p>
+<p>import org.springframework.stereotype.Service;</p>
+<p>import java.util.Date;</p>
+<p>@Service<br>public class TestService {<br>    public Date getTime() {<br>        return new Date();<br>    }<br>}</p>
+<ol start="5">
+<li>编写 MainViewModel 类:</li>
+</ol>
+<p>package spring.zk.test.viewmodel;</p>
+<p>import org.zkoss.bind.annotation.Command;<br>import org.zkoss.bind.annotation.NotifyChange;<br>import org.zkoss.zk.ui.select.annotation.VariableResolver;<br>import org.zkoss.zk.ui.select.annotation.WireVariable;<br>import org.zkoss.zkplus.spring.DelegatingVariableResolver;<br>import spring.zk.test.service.TestService;</p>
+<p>import java.util.Date;</p>
+<p>@VariableResolver(DelegatingVariableResolver.class)<br>public class MainViewModel {</p>
+<pre><code>@WireVariable
+private TestService testService;
+
+@Command
+@NotifyChange(&quot;currentTime&quot;)
+public void updateTime() {
+    //只刷新变量 NotifyChange currentTime
+}
+
+public Date getCurrentTime() {
+    return testService.getTime();
+}
+</code></pre><p>}</p>
+<ol start="6">
+<li>编写前端界面mvvm.zul，@init引入后台MainViewModel类，<label value="@load(vm.currentTime)"> 实现前后台变量的绑定，onClick=”@command(‘updateTime’)” 绑定后台updateTime方法，实现前后台交互:</label></li>
+</ol>
+<zk><br>    <window title="Test ZK-SpringBoot" viewmodel="@id('vm') @init('spring.zk.test.viewmodel.MainViewModel')"><br>        Current Time (from Spring Service):<br><br>        <hlayout valign="middle"><br>            <label value="@load(vm.currentTime)"><br>            <button iconsclass="z-icon-refresh" onclick="@command('updateTime')"><br>        </button></label></hlayout><br>    </window><br></zk>
+
+<ol start="7">
+<li>编写springboot 的配置文件application.properties:</li>
+</ol>
+<p>server.port=8888</p>
+<h1 id="Enable-zul"><a href="#Enable-zul" class="headerlink" title="Enable zul"></a><strong>Enable zul</strong></h1><p>zk.zul-view-resolver-prefix=/zul</p>
+<ol start="8">
+<li><p>运行SpringBoot项目:<br><img src="https://img-blog.csdnimg.cn/20190331194611101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>访问项目：<br><img src="https://img-blog.csdnimg.cn/20190331205426422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>10.刷新时间<br><img src="https://img-blog.csdnimg.cn/20190331205510642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA2NzE3NDE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"> </p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.csdn.net/u010671741?t=1/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/" data-id="cjw3oqbqr0002bosu8sk3fd4w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/25/新装服务器、终端配置局域网/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/25/SpringBoot集成ZK框架实现前后台无js代码交互/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/新装服务器、终端配置局域网/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/vmware'如果已在 BIOS-固件设置中禁用 Intel VT-x，或主机自更改此设置后从未重新启动，则 Intel VT-x 可能被禁用'解决办法/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/Spring Boot 项目配置/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/25/运行你的第一个Docker镜像/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zst<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
